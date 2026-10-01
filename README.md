@@ -24,3 +24,6 @@ Push to GitHub, import in Vercel, add the Neon integration (Storage tab), then r
 Shared helpers: `src/rules/helpers.ts`, drug class lists: `src/rules/drugClasses.ts`.
 
 > Clinical thresholds in the lenalidomide rules are simplified and illustrative. Validate with a clinical pharmacist before any real use.
+
+## This project is currently in progress 
+🚧check back for updates👷🏻‍♀️
