@@ -8,10 +8,14 @@ import {
   timestamp,
 } from "drizzle-orm/pg-core";
 
-const bytea = customType<{ data: Buffer; driverData: string }>({
+const bytea = customType<{ data: Buffer; driverData: string | Uint8Array }>({
   dataType: () => "bytea",
   toDriver: (v) => "\\x" + v.toString("hex"),
-  fromDriver: (v) => Buffer.from(v.replace(/^\\x/, ""), "hex"),
+  // neon-http returns bytea as a hex string or raw bytes depending on version
+  fromDriver: (v) =>
+    typeof v === "string"
+      ? Buffer.from(v.replace(/^\\x/, ""), "hex")
+      : Buffer.from(v),
 });
 
 export const patients = pgTable("patients", {
